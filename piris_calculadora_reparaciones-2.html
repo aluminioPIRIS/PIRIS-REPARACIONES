@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111827">
 
-<title>Piris Reparaciones - Calculadora</title>
+<title>Piris Reparaciones</title>
 
 <style>
 * {
@@ -13,8 +13,8 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
+    font-family: Arial, sans-serif;
     background: #f3f4f6;
     color: #111827;
 }
@@ -22,30 +22,37 @@ body {
 header {
     background: #111827;
     color: white;
-    padding: 20px;
     text-align: center;
+    padding: 20px 15px;
 }
 
 header h1 {
-    margin: 0 0 5px 0;
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin: 6px 0 0;
+    opacity: .8;
 }
 
 main {
-    max-width: 700px;
+    max-width: 750px;
     margin: auto;
-    padding: 16px;
+    padding: 15px;
 }
 
 .card {
     background: white;
     border-radius: 14px;
     padding: 18px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
 }
 
 h2 {
     margin-top: 0;
+    font-size: 20px;
 }
 
 .grid {
@@ -58,64 +65,113 @@ label {
     display: block;
     font-weight: bold;
     font-size: 14px;
+    margin-bottom: 5px;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    margin-top: 5px;
-    border-radius: 9px;
     border: 1px solid #d1d5db;
+    border-radius: 9px;
     font-size: 16px;
 }
 
 button {
     width: 100%;
     padding: 13px;
-    border-radius: 9px;
     border: none;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+    border-radius: 9px;
     background: #111827;
     color: white;
+    font-size: 16px;
+    font-weight: bold;
     margin-top: 10px;
 }
 
-button:hover {
-    opacity: 0.9;
+button:active {
+    transform: scale(.99);
 }
 
-.secondary {
-    background: #6b7280;
-}
-
-.danger {
+.btn-red {
     background: #dc2626;
+}
+
+.btn-gray {
+    background: #6b7280;
 }
 
 .material {
     border: 1px solid #e5e7eb;
     border-radius: 10px;
     padding: 12px;
+    margin-bottom: 12px;
+}
+
+.material-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.small {
+.material-header button {
+    width: auto;
+    margin: 0;
+    padding: 6px 10px;
     font-size: 13px;
-    color: #6b7280;
 }
 
-.result {
-    font-size: 18px;
-    line-height: 1.9;
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.result-label {
+    color: #4b5563;
+}
+
+.result-value {
+    font-weight: bold;
+}
+
+.subtotal {
+    font-size: 19px;
+    margin-top: 10px;
 }
 
 .total {
-    font-size: 28px;
+    margin-top: 15px;
+    padding: 18px;
+    background: #111827;
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.total-label {
+    font-size: 15px;
+    opacity: .8;
+}
+
+.total-price {
+    font-size: 34px;
     font-weight: bold;
-    border-top: 2px solid #111827;
-    padding-top: 12px;
+    margin-top: 5px;
+}
+
+.info {
+    background: #eff6ff;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 14px;
+    color: #1e40af;
     margin-top: 10px;
 }
 
@@ -131,7 +187,7 @@ button:hover {
 
 <header>
     <h1>🔧 Piris Reparaciones</h1>
-    <div>Calculadora de presupuestos</div>
+    <p>Calculadora de presupuestos</p>
 </header>
 
 <main>
@@ -144,46 +200,55 @@ button:hover {
 
 <div class="grid">
 
-<div>
-<label>Precio hora (€)</label>
-<input
-    id="precioHora"
-    type="number"
-    step="0.01"
-    value="35"
->
+    <div>
+        <label>Precio hora (€)</label>
+        <input
+            id="precioHora"
+            type="number"
+            value="35"
+            min="0"
+            step="0.01"
+        >
+    </div>
+
+    <div>
+        <label>Precio por km (€)</label>
+        <input
+            id="precioKm"
+            type="number"
+            value="0.50"
+            min="0"
+            step="0.01"
+        >
+    </div>
+
+    <div>
+        <label>Margen material (%)</label>
+        <input
+            id="margenMaterial"
+            type="number"
+            value="30"
+            min="0"
+            step="0.1"
+        >
+    </div>
+
+    <div>
+        <label>IVA (%)</label>
+        <input
+            id="iva"
+            type="number"
+            value="21"
+            min="0"
+            step="0.1"
+        >
+    </div>
+
 </div>
 
-<div>
-<label>Precio kilómetro (€)</label>
-<input
-    id="precioKm"
-    type="number"
-    step="0.01"
-    value="0.50"
->
-</div>
-
-<div>
-<label>Margen materiales (%)</label>
-<input
-    id="margen"
-    type="number"
-    step="0.1"
-    value="30"
->
-</div>
-
-<div>
-<label>IVA (%)</label>
-<input
-    id="iva"
-    type="number"
-    step="0.1"
-    value="21"
->
-</div>
-
+<div class="info">
+    El margen se aplica sobre el coste del material.
+    Ejemplo: 100 € de coste + 30% de margen = 130 € para el cliente antes del IVA.
 </div>
 
 </section>
@@ -197,52 +262,107 @@ button:hover {
 
 <div class="grid">
 
-<div>
-<label>Horas trabajadas</label>
-<input
-    id="horas"
-    type="number"
-    min="0"
-    step="0.1"
-    value="0"
->
-</div>
+    <div>
+        <label>Horas trabajadas</label>
+        <input
+            id="horas"
+            type="number"
+            value="0"
+            min="0"
+            step="0.1"
+        >
+    </div>
 
-<div>
-<label>Kilómetros realizados</label>
-<input
-    id="km"
-    type="number"
-    min="0"
-    step="0.1"
-    value="0"
->
-</div>
+    <div>
+        <label>Minutos adicionales</label>
+        <input
+            id="minutos"
+            type="number"
+            value="0"
+            min="0"
+            max="59"
+            step="1"
+        >
+    </div>
+
+    <div>
+        <label>Kilómetros</label>
+        <input
+            id="kilometros"
+            type="number"
+            value="0"
+            min="0"
+            step="0.1"
+        >
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- MATERIALES -->
+<!-- MATERIAL -->
 
 <section class="card">
 
-<h2>📦 Materiales</h2>
+<h2>📦 Material</h2>
 
 <div id="materiales"></div>
 
 <button
     type="button"
-    onclick="addMaterial()"
+    onclick="agregarMaterial()"
 >
     + Añadir material
 </button>
 
-<p class="small">
-El precio introducido es TU COSTE.
-La aplicación añadirá automáticamente el margen configurado.
-</p>
+</section>
+
+
+<!-- COSTE MATERIAL -->
+
+<section class="card">
+
+<h2>📊 Coste de material</h2>
+
+<div class="result-row">
+    <span class="result-label">
+        Coste real del material
+    </span>
+
+    <span
+        class="result-value"
+        id="costeMaterial"
+    >
+        0,00 €
+    </span>
+</div>
+
+<div class="result-row">
+    <span class="result-label">
+        Margen aplicado
+    </span>
+
+    <span
+        class="result-value"
+        id="porcentajeMargen"
+    >
+        30%
+    </span>
+</div>
+
+<div class="result-row">
+    <span class="result-label">
+        Material para el cliente
+    </span>
+
+    <span
+        class="result-value"
+        id="materialCliente"
+    >
+        0,00 €
+    </span>
+</div>
 
 </section>
 
@@ -251,39 +371,82 @@ La aplicación añadirá automáticamente el margen configurado.
 
 <section class="card">
 
-<h2>💰 Presupuesto</h2>
+<h2>💰 Precio al cliente</h2>
 
-<div class="result">
+<div class="result-row">
+    <span class="result-label">
+        Mano de obra
+    </span>
 
-<div>
-Mano de obra:
-<strong id="rMano">0,00 €</strong>
+    <span
+        class="result-value"
+        id="resultadoMano"
+    >
+        0,00 €
+    </span>
 </div>
 
-<div>
-Desplazamiento:
-<strong id="rKm">0,00 €</strong>
+<div class="result-row">
+    <span class="result-label">
+        Desplazamiento
+    </span>
+
+    <span
+        class="result-value"
+        id="resultadoKm"
+    >
+        0,00 €
+    </span>
 </div>
 
-<div>
-Materiales con margen:
-<strong id="rMat">0,00 €</strong>
+<div class="result-row">
+    <span class="result-label">
+        Material + margen
+    </span>
+
+    <span
+        class="result-value"
+        id="resultadoMaterial"
+    >
+        0,00 €
+    </span>
 </div>
 
-<div>
-Subtotal:
-<strong id="rSub">0,00 €</strong>
+<div class="result-row subtotal">
+    <span>
+        Subtotal
+    </span>
+
+    <strong id="subtotal">
+        0,00 €
+    </strong>
 </div>
 
-<div>
-IVA:
-<strong id="rIva">0,00 €</strong>
+<div class="result-row">
+    <span class="result-label">
+        IVA
+    </span>
+
+    <span
+        class="result-value"
+        id="resultadoIVA"
+    >
+        0,00 €
+    </span>
 </div>
 
 <div class="total">
-Precio cliente:
-<span id="rTotal">0,00 €</span>
-</div>
+
+    <div class="total-label">
+        PRECIO FINAL AL CLIENTE
+    </div>
+
+    <div
+        class="total-price"
+        id="precioCliente"
+    >
+        0,00 €
+    </div>
 
 </div>
 
@@ -298,15 +461,15 @@ Precio cliente:
     type="button"
     onclick="calcular()"
 >
-    🔄 Calcular presupuesto
+    🔄 CALCULAR
 </button>
 
 <button
     type="button"
-    class="secondary"
-    onclick="limpiar()"
+    class="btn-gray"
+    onclick="nuevoPresupuesto()"
 >
-    🗑️ Nuevo presupuesto
+    🗑️ NUEVO PRESUPUESTO
 </button>
 
 </section>
@@ -316,11 +479,43 @@ Precio cliente:
 
 <script>
 
-/* ============================
-   CREAR MATERIAL
-============================ */
+/* =====================================================
+   FUNCIONES GENERALES
+===================================================== */
 
-function addMaterial(nombre = "", coste = 0) {
+function numero(id) {
+
+    const elemento =
+        document.getElementById(id);
+
+    const valor =
+        parseFloat(elemento.value);
+
+    return isNaN(valor) ? 0 : valor;
+}
+
+
+function euros(valor) {
+
+    return valor.toLocaleString(
+        "es-ES",
+        {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }
+    ) + " €";
+
+}
+
+
+/* =====================================================
+   AÑADIR MATERIAL
+===================================================== */
+
+function agregarMaterial(
+    nombre = "",
+    coste = 0
+) {
 
     const contenedor =
         document.getElementById("materiales");
@@ -332,16 +527,33 @@ function addMaterial(nombre = "", coste = 0) {
 
     material.innerHTML = `
 
+        <div class="material-header">
+
+            <span>Material</span>
+
+            <button
+                type="button"
+                class="btn-red"
+                onclick="
+                    this.closest('.material').remove();
+                    calcular();
+                "
+            >
+                Eliminar
+            </button>
+
+        </div>
+
         <div class="grid">
 
             <div>
 
                 <label>
-                    Material
+                    Descripción
                 </label>
 
                 <input
-                    class="mNombre"
+                    class="nombreMaterial"
                     type="text"
                     placeholder="Ej. Cerradura"
                     value="${nombre}"
@@ -352,11 +564,11 @@ function addMaterial(nombre = "", coste = 0) {
             <div>
 
                 <label>
-                    Tu coste (€)
+                    Coste real (€)
                 </label>
 
                 <input
-                    class="mCoste"
+                    class="costeMaterialInput"
                     type="number"
                     min="0"
                     step="0.01"
@@ -367,225 +579,268 @@ function addMaterial(nombre = "", coste = 0) {
 
         </div>
 
-        <button
-            type="button"
-            class="danger"
-            onclick="
-                this.parentElement.remove();
-                calcular();
-            "
-        >
-            Eliminar material
-        </button>
-
     `;
 
     contenedor.appendChild(material);
 
-    // Escuchar cambios
-    material
-        .querySelector(".mCoste")
-        .addEventListener("input", calcular);
 
     material
-        .querySelector(".mNombre")
-        .addEventListener("input", calcular);
+        .querySelector(".costeMaterialInput")
+        .addEventListener(
+            "input",
+            calcular
+        );
+
+
+    material
+        .querySelector(".nombreMaterial")
+        .addEventListener(
+            "input",
+            calcular
+        );
+
 
     calcular();
 }
 
 
-/* ============================
-   OBTENER NUMERO
-============================ */
-
-function obtenerNumero(id) {
-
-    const elemento =
-        document.getElementById(id);
-
-    const numero =
-        parseFloat(elemento.value);
-
-    if (isNaN(numero)) {
-        return 0;
-    }
-
-    return numero;
-}
-
-
-/* ============================
-   FORMATO €
-============================ */
-
-function euros(numero) {
-
-    return numero.toLocaleString(
-        "es-ES",
-        {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }
-    ) + " €";
-
-}
-
-
-/* ============================
-   CALCULAR
-============================ */
+/* =====================================================
+   CALCULAR TODO
+===================================================== */
 
 function calcular() {
 
-    /* CONFIGURACIÓN */
+    /* -----------------------------------------------
+       CONFIGURACIÓN
+    ----------------------------------------------- */
 
     const precioHora =
-        obtenerNumero("precioHora");
+        numero("precioHora");
 
     const precioKm =
-        obtenerNumero("precioKm");
+        numero("precioKm");
 
     const margen =
-        obtenerNumero("margen");
+        numero("margenMaterial");
 
     const iva =
-        obtenerNumero("iva");
+        numero("iva");
 
 
-    /* TRABAJO */
+    /* -----------------------------------------------
+       TIEMPO
+    ----------------------------------------------- */
 
     const horas =
-        obtenerNumero("horas");
+        numero("horas");
 
-    const kilometros =
-        obtenerNumero("km");
+    const minutos =
+        numero("minutos");
 
 
-    /* MANO DE OBRA */
+    /*
+       Convertimos los minutos a horas.
+
+       30 minutos = 0,5 horas
+       15 minutos = 0,25 horas
+    */
+
+    const horasTotales =
+        horas + (minutos / 60);
+
+
+    /* -----------------------------------------------
+       MANO DE OBRA
+    ----------------------------------------------- */
 
     const costeManoObra =
-        horas * precioHora;
+        horasTotales * precioHora;
 
 
-    /* DESPLAZAMIENTO */
+    /* -----------------------------------------------
+       DESPLAZAMIENTO
+    ----------------------------------------------- */
+
+    const kilometros =
+        numero("kilometros");
 
     const costeDesplazamiento =
         kilometros * precioKm;
 
 
-    /* MATERIALES */
+    /* -----------------------------------------------
+       MATERIAL
+    ----------------------------------------------- */
 
-    let costeMateriales = 0;
+    let costeMaterial =
+        0;
+
 
     const materiales =
-        document.querySelectorAll(".mCoste");
+        document.querySelectorAll(
+            ".costeMaterialInput"
+        );
 
-    materiales.forEach(function(elemento) {
 
-        const coste =
-            parseFloat(elemento.value);
+    materiales.forEach(function(input) {
 
-        if (!isNaN(coste)) {
+        const valor =
+            parseFloat(input.value);
 
-            costeMateriales += coste;
+        if (!isNaN(valor)) {
+
+            costeMaterial += valor;
 
         }
 
     });
 
 
+    /* -----------------------------------------------
+       MARGEN DEL MATERIAL
+    ----------------------------------------------- */
+
+    const cantidadMargen =
+        costeMaterial *
+        (margen / 100);
+
+
     /*
-        AQUÍ ESTÁ LA CORRECCIÓN IMPORTANTE.
+       COSTE + MARGEN
 
-        Si el material cuesta 100 €
-        y el margen es 30%:
+       Ejemplo:
 
-        100 × 1,30 = 130 €
+       Coste = 100 €
+       Margen = 30 %
 
+       100 + 30 = 130 €
     */
 
-    const materialesCliente =
-        costeMateriales *
-        (1 + margen / 100);
+    const materialParaCliente =
+        costeMaterial +
+        cantidadMargen;
 
 
-    /* SUBTOTAL */
+    /* -----------------------------------------------
+       SUBTOTAL
+    ----------------------------------------------- */
 
     const subtotal =
         costeManoObra +
         costeDesplazamiento +
-        materialesCliente;
+        materialParaCliente;
 
 
-    /* IVA */
+    /* -----------------------------------------------
+       IVA
+    ----------------------------------------------- */
 
     const importeIVA =
-        subtotal * iva / 100;
+        subtotal *
+        (iva / 100);
 
 
-    /* TOTAL CLIENTE */
+    /* -----------------------------------------------
+       PRECIO FINAL CLIENTE
+    ----------------------------------------------- */
 
-    const total =
-        subtotal + importeIVA;
+    const precioFinal =
+        subtotal +
+        importeIVA;
 
 
-    /* MOSTRAR RESULTADOS */
+    /* -----------------------------------------------
+       MOSTRAR RESULTADOS
+    ----------------------------------------------- */
 
-    document.getElementById("rMano")
-        .textContent =
+    document.getElementById(
+        "costeMaterial"
+    ).textContent =
+        euros(costeMaterial);
+
+
+    document.getElementById(
+        "porcentajeMargen"
+    ).textContent =
+        margen.toFixed(1) + "%";
+
+
+    document.getElementById(
+        "materialCliente"
+    ).textContent =
+        euros(materialParaCliente);
+
+
+    document.getElementById(
+        "resultadoMano"
+    ).textContent =
         euros(costeManoObra);
 
 
-    document.getElementById("rKm")
-        .textContent =
+    document.getElementById(
+        "resultadoKm"
+    ).textContent =
         euros(costeDesplazamiento);
 
 
-    document.getElementById("rMat")
-        .textContent =
-        euros(materialesCliente);
+    document.getElementById(
+        "resultadoMaterial"
+    ).textContent =
+        euros(materialParaCliente);
 
 
-    document.getElementById("rSub")
-        .textContent =
+    document.getElementById(
+        "subtotal"
+    ).textContent =
         euros(subtotal);
 
 
-    document.getElementById("rIva")
-        .textContent =
+    document.getElementById(
+        "resultadoIVA"
+    ).textContent =
         euros(importeIVA);
 
 
-    document.getElementById("rTotal")
-        .textContent =
-        euros(total);
+    document.getElementById(
+        "precioCliente"
+    ).textContent =
+        euros(precioFinal);
 
 }
 
 
-/* ============================
+/* =====================================================
    NUEVO PRESUPUESTO
-============================ */
+===================================================== */
 
-function limpiar() {
+function nuevoPresupuesto() {
 
-    document.getElementById("horas").value = 0;
+    document.getElementById(
+        "horas"
+    ).value = 0;
 
-    document.getElementById("km").value = 0;
+    document.getElementById(
+        "minutos"
+    ).value = 0;
 
-    document.getElementById("materiales").innerHTML = "";
+    document.getElementById(
+        "kilometros"
+    ).value = 0;
 
-    addMaterial();
+    document.getElementById(
+        "materiales"
+    ).innerHTML = "";
+
+    agregarMaterial();
 
     calcular();
 
 }
 
 
-/* ============================
-   ACTUALIZAR AUTOMÁTICAMENTE
-============================ */
+/* =====================================================
+   ACTUALIZACIÓN AUTOMÁTICA
+===================================================== */
 
 document
     .querySelectorAll("input")
@@ -599,16 +854,16 @@ document
     });
 
 
-/* ============================
+/* =====================================================
    MATERIAL INICIAL
-============================ */
+===================================================== */
 
-addMaterial();
+agregarMaterial();
 
 
-/* ============================
+/* =====================================================
    CÁLCULO INICIAL
-============================ */
+===================================================== */
 
 calcular();
 
